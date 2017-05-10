@@ -24,45 +24,25 @@ namespace RSA_POC
 
         private void btn_AKeyGenerate_Click(object sender, EventArgs e)
         {
-            //TextBox txt_HashMethod = (TextBox)tabControl1.GetControl(0).Controls.Find("txt_HashMethod", true).FirstOrDefault();
             string HashMethod = txt_HashMethod.Text;
-
-            //TextBox txt_KeyLength = (TextBox)tabControl1.GetControl(0).Controls.Find("txt_KeyLength", true).FirstOrDefault();
+            
             int KeyLength = Convert.ToInt16(txt_KeyLength.Text);
-
-            //TextBox txt_APK = (TextBox)tabControl1.GetControl(0).Controls.Find("txt_APK", true).FirstOrDefault();
-
+            
             CspParameters cp = new CspParameters();
             cp.KeyContainerName = "MyKeyContainerName";
 
-            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(KeyLength, cp);
+            //RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(KeyLength, cp);
+            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(KeyLength);
             txt_APK.Text = RSA.ToXmlString(true);
             txt_ACK.Text = RSA.ToXmlString(false);
-
-            //RSACryptoServiceProvider Private_RSA = new RSACryptoServiceProvider();
-            //Private_RSA.FromXmlString(txt_APK.Text);
-            //string APK = Private_RSA.ToXmlString(true);
-            //RSAParameters Private_RSAKeyInfo = Private_RSA.ExportParameters(true);
-            //byte[] Content = Private_RSAKeyInfo.Exponent;
-
-            //RSACryptoServiceProvider Public_RSA = new RSACryptoServiceProvider();
-            //Public_RSA.FromXmlString(txt_ACK.Text);
-            //string APK2 = Private_RSA.ToXmlString(true);
-            //string ACK = Private_RSA.ToXmlString(false);
-            //RSAParameters Public_RSAKeyInfo = Public_RSA.ExportParameters(false);
-            //byte[] Content2 = Public_RSAKeyInfo.Exponent;            
         }
 
         private void btn_BKeyGenerate_Click(object sender, EventArgs e)
         {
-            //TextBox txt_HashMethod = (TextBox)tabControl1.GetControl(0).Controls.Find("txt_HashMethod", true).FirstOrDefault();
             string HashMethod = txt_HashMethod.Text;
-
-            //TextBox txt_KeyLength = (TextBox)tabControl1.GetControl(0).Controls.Find("txt_KeyLength", true).FirstOrDefault();
+            
             int KeyLength = Convert.ToInt16(txt_KeyLength.Text);
-
-            //TextBox txt_BPK = (TextBox)tabControl1.GetControl(0).Controls.Find("txt_BPK", true).FirstOrDefault();
-
+            
             CspParameters cp = new CspParameters();
             cp.KeyContainerName = "MyKeyContainerName";
 
@@ -112,7 +92,7 @@ namespace RSA_POC
             {
                 string Content = txt_Content.Text;
                 byte[] bytes = Encoding.UTF8.GetBytes(Content);
-                
+
                 RSACryptoServiceProvider B_Public_RSA = new RSACryptoServiceProvider();
                 B_Public_RSA.FromXmlString(txt_BCK.Text);
 
@@ -152,7 +132,7 @@ namespace RSA_POC
                 bytes = B_Private_RSA.Decrypt(bytes, false);
                 txt_DecryptContent.Text = Encoding.UTF8.GetString(bytes);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Decryption error occur");
             }
@@ -170,7 +150,7 @@ namespace RSA_POC
                 string Content = txt_DecryptContent.Text;
                 byte[] bytes = Encoding.UTF8.GetBytes(Content);
 
-                // 4) 呼叫 VerifyData 方法, 驗證本文與簽章是否相符
+                //呼叫 VerifyData 方法, 驗證本文與簽章是否相符
                 if (A_Public_RSA.VerifyData(bytes, new SHA256CryptoServiceProvider(), signature))
                 {
                     lab_VerifyResult.ForeColor = Color.Green;
@@ -188,6 +168,6 @@ namespace RSA_POC
             }
         }
         #endregion
-        
+
     }
 }
