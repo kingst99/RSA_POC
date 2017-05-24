@@ -23,9 +23,9 @@ namespace RSA_POC
         private void btn_AKeyGenerate_Click(object sender, EventArgs e)
         {
             string HashMethod = txt_HashMethod.Text;
-            
+
             int KeyLength = Convert.ToInt16(txt_KeyLength.Text);
-            
+
             //CspParameters cp = new CspParameters();
             //cp.KeyContainerName = "MyKeyContainerName";
 
@@ -40,9 +40,9 @@ namespace RSA_POC
         private void btn_BKeyGenerate_Click(object sender, EventArgs e)
         {
             string HashMethod = txt_HashMethod.Text;
-            
+
             int KeyLength = Convert.ToInt16(txt_KeyLength.Text);
-            
+
             RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(KeyLength);
             txt_BPK.Text = RSA.ToXmlString(true);
             txt_BCK.Text = RSA.ToXmlString(false);
@@ -166,5 +166,52 @@ namespace RSA_POC
         }
         #endregion
 
+        #region AES Tool
+        /// <summary>
+        /// 使用AES 256 加密
+        /// </summary>
+        /// <param name="source">本文</param>
+        /// <param name="key">因為是256 所以你密碼必須為32英文字=32*8=256</param>
+        /// <param name="iv">IV為128 所以為 16 * 8= 128</param>
+        /// <returns></returns>
+        private void btn_AES_Enc_Click(object sender, EventArgs e)
+        {
+            var key = txt_AES_Key.Text;
+            var iv = txt_AES_IV.Text;
+
+            byte[] sourceBytes = Encoding.UTF8.GetBytes(txt_AES_Conten.Text);
+            var aes = new RijndaelManaged();
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = Encoding.UTF8.GetBytes(iv);
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform transform = aes.CreateEncryptor();
+
+            txt_AES_EncContent.Text = Convert.ToBase64String(transform.TransformFinalBlock(sourceBytes, 0, sourceBytes.Length));
+        }
+        /// <summary>
+        /// 使用AES 256 解密
+        /// </summary>
+        /// <param name="encryptData">Base64的加密後的字串</param>
+        /// <param name="key">因為是256 所以你密碼必須為32英文字=32*8=256</param>
+        /// <param name="iv">IV為128 所以為 16 * 8= 128</param>
+        /// <returns></returns>
+        private void btn_AES_Dec_Click(object sender, EventArgs e)
+        {
+            var key = txt_AES_Key.Text;
+            var iv = txt_AES_IV.Text;
+
+            var encryptBytes = Convert.FromBase64String(txt_AES_EncContent.Text);
+            var aes = new RijndaelManaged();
+            aes.Key = Encoding.UTF8.GetBytes(key);
+            aes.IV = Encoding.UTF8.GetBytes(iv);
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.PKCS7;
+            ICryptoTransform transform = aes.CreateDecryptor();
+
+            txt_AES_DecContent.Text = Encoding.UTF8.GetString(transform.TransformFinalBlock(encryptBytes, 0, encryptBytes.Length));
+        }
+        #endregion
     }
 }
