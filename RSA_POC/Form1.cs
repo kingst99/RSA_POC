@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 
-using System.Security.Cryptography.X509Certificates;
-
 namespace RSA_POC
 {
     public partial class Form1 : Form
@@ -28,10 +26,12 @@ namespace RSA_POC
             
             int KeyLength = Convert.ToInt16(txt_KeyLength.Text);
             
-            CspParameters cp = new CspParameters();
-            cp.KeyContainerName = "MyKeyContainerName";
+            //CspParameters cp = new CspParameters();
+            //cp.KeyContainerName = "MyKeyContainerName";
 
+            //RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(cp);
             //RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(KeyLength, cp);
+
             RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(KeyLength);
             txt_APK.Text = RSA.ToXmlString(true);
             txt_ACK.Text = RSA.ToXmlString(false);
@@ -43,10 +43,7 @@ namespace RSA_POC
             
             int KeyLength = Convert.ToInt16(txt_KeyLength.Text);
             
-            CspParameters cp = new CspParameters();
-            cp.KeyContainerName = "MyKeyContainerName";
-
-            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(KeyLength, cp);
+            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(KeyLength);
             txt_BPK.Text = RSA.ToXmlString(true);
             txt_BCK.Text = RSA.ToXmlString(false);
         }

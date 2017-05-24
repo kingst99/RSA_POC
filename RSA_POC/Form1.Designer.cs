@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_KeyGenerator = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -71,6 +72,8 @@
             this.txt_EncryptContent = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.tab_ReadMe = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tab_KeyGenerator.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -81,10 +84,12 @@
             this.tab_Receive.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tab_ReadMe.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tab_ReadMe);
             this.tabControl1.Controls.Add(this.tab_KeyGenerator);
             this.tabControl1.Controls.Add(this.tab_Send);
             this.tabControl1.Controls.Add(this.tab_Receive);
@@ -520,6 +525,27 @@
             this.label9.TabIndex = 2;
             this.label9.Text = "電子簽章";
             // 
+            // tab_ReadMe
+            // 
+            this.tab_ReadMe.Controls.Add(this.textBox1);
+            this.tab_ReadMe.Location = new System.Drawing.Point(4, 28);
+            this.tab_ReadMe.Name = "tab_ReadMe";
+            this.tab_ReadMe.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_ReadMe.Size = new System.Drawing.Size(1049, 714);
+            this.tab_ReadMe.TabIndex = 3;
+            this.tab_ReadMe.Text = "讀我";
+            this.tab_ReadMe.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(7, 7);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(1036, 701);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = resources.GetString("textBox1.Text");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -528,7 +554,7 @@
             this.ClientSize = new System.Drawing.Size(1075, 764);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "雙向RSA加簽與加密";
+            this.Text = "電子簽章RSA加解密雙向測試工具 v1.0";
             this.tabControl1.ResumeLayout(false);
             this.tab_KeyGenerator.ResumeLayout(false);
             this.tab_KeyGenerator.PerformLayout();
@@ -547,6 +573,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tab_ReadMe.ResumeLayout(false);
+            this.tab_ReadMe.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -596,6 +624,8 @@
         private System.Windows.Forms.Label lab_VerifyResult;
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Button btn_GetSignature;
+        private System.Windows.Forms.TabPage tab_ReadMe;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
