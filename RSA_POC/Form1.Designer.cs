@@ -75,26 +75,29 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tab_AES_Tool = new System.Windows.Forms.TabPage();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.txt_AES_Conten = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btn_AES_Enc = new System.Windows.Forms.Button();
-            this.txt_AES_EncContent = new System.Windows.Forms.TextBox();
-            this.btn_AES_Dec = new System.Windows.Forms.Button();
-            this.txt_AES_DecContent = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txt_AES_Key = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txt_AES_IV = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btn_AES_KeyGenerate = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_AES_IV = new System.Windows.Forms.TextBox();
+            this.txt_AES_Key = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btn_AES_Dec = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_AES_DecContent = new System.Windows.Forms.TextBox();
+            this.txt_AES_EncContent = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btn_AES_Enc = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_AES_Conten = new System.Windows.Forms.TextBox();
+            this.cb_Key_Base64 = new System.Windows.Forms.CheckBox();
+            this.cb_IV_Base64 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tab_ReadMe.SuspendLayout();
             this.tab_KeyGenerator.SuspendLayout();
@@ -107,8 +110,8 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tab_AES_Tool.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -573,6 +576,9 @@
             // 
             // tab_AES_Tool
             // 
+            this.tab_AES_Tool.Controls.Add(this.cb_IV_Base64);
+            this.tab_AES_Tool.Controls.Add(this.cb_Key_Base64);
+            this.tab_AES_Tool.Controls.Add(this.btn_AES_KeyGenerate);
             this.tab_AES_Tool.Controls.Add(this.textBox3);
             this.tab_AES_Tool.Controls.Add(this.textBox2);
             this.tab_AES_Tool.Controls.Add(this.txt_AES_IV);
@@ -592,17 +598,101 @@
             this.tab_AES_Tool.Text = "附錄：AES加解密";
             this.tab_AES_Tool.UseVisualStyleBackColor = true;
             // 
-            // groupBox5
+            // btn_AES_KeyGenerate
             // 
-            this.groupBox5.Controls.Add(this.btn_AES_Enc);
-            this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.txt_AES_Conten);
-            this.groupBox5.Location = new System.Drawing.Point(18, 133);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1012, 216);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "AES 加密";
+            this.btn_AES_KeyGenerate.Location = new System.Drawing.Point(885, 77);
+            this.btn_AES_KeyGenerate.Name = "btn_AES_KeyGenerate";
+            this.btn_AES_KeyGenerate.Size = new System.Drawing.Size(145, 37);
+            this.btn_AES_KeyGenerate.TabIndex = 3;
+            this.btn_AES_KeyGenerate.Text = "產生金鑰";
+            this.btn_AES_KeyGenerate.UseVisualStyleBackColor = true;
+            this.btn_AES_KeyGenerate.Click += new System.EventHandler(this.btn_AES_KeyGenerate_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(686, 35);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(64, 29);
+            this.textBox3.TabIndex = 2;
+            this.textBox3.Text = "128";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(313, 35);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(64, 29);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.Text = "256";
+            // 
+            // txt_AES_IV
+            // 
+            this.txt_AES_IV.Location = new System.Drawing.Point(602, 82);
+            this.txt_AES_IV.Name = "txt_AES_IV";
+            this.txt_AES_IV.Size = new System.Drawing.Size(184, 29);
+            this.txt_AES_IV.TabIndex = 2;
+            // 
+            // txt_AES_Key
+            // 
+            this.txt_AES_Key.Location = new System.Drawing.Point(253, 81);
+            this.txt_AES_Key.Name = "txt_AES_Key";
+            this.txt_AES_Key.Size = new System.Drawing.Size(300, 29);
+            this.txt_AES_Key.TabIndex = 2;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(570, 38);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(110, 18);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "區塊長度(bit)";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(756, 38);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(114, 18);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "共16個英數字";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(383, 38);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(114, 18);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "共32個英數字";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(203, 85);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 18);
+            this.label17.TabIndex = 1;
+            this.label17.Text = "金鑰";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(570, 85);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(26, 18);
+            this.label18.TabIndex = 1;
+            this.label18.Text = "IV";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(203, 38);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(110, 18);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "金鑰長度(bit)";
             // 
             // groupBox8
             // 
@@ -618,23 +708,24 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "AES 解密";
             // 
-            // txt_AES_Conten
+            // btn_AES_Dec
             // 
-            this.txt_AES_Conten.Location = new System.Drawing.Point(148, 35);
-            this.txt_AES_Conten.Multiline = true;
-            this.txt_AES_Conten.Name = "txt_AES_Conten";
-            this.txt_AES_Conten.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_AES_Conten.Size = new System.Drawing.Size(834, 104);
-            this.txt_AES_Conten.TabIndex = 0;
+            this.btn_AES_Dec.Location = new System.Drawing.Point(436, 164);
+            this.btn_AES_Dec.Name = "btn_AES_Dec";
+            this.btn_AES_Dec.Size = new System.Drawing.Size(145, 37);
+            this.btn_AES_Dec.TabIndex = 2;
+            this.btn_AES_Dec.Text = "進行解密";
+            this.btn_AES_Dec.UseVisualStyleBackColor = true;
+            this.btn_AES_Dec.Click += new System.EventHandler(this.btn_AES_Dec_Click);
             // 
-            // label1
+            // label6
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 18);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "原始文件";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(38, 221);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 18);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "還原文件";
             // 
             // label2
             // 
@@ -644,6 +735,36 @@
             this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 1;
             this.label2.Text = "加密內容";
+            // 
+            // txt_AES_DecContent
+            // 
+            this.txt_AES_DecContent.Location = new System.Drawing.Point(148, 218);
+            this.txt_AES_DecContent.Multiline = true;
+            this.txt_AES_DecContent.Name = "txt_AES_DecContent";
+            this.txt_AES_DecContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_AES_DecContent.Size = new System.Drawing.Size(834, 104);
+            this.txt_AES_DecContent.TabIndex = 0;
+            // 
+            // txt_AES_EncContent
+            // 
+            this.txt_AES_EncContent.Location = new System.Drawing.Point(148, 41);
+            this.txt_AES_EncContent.Multiline = true;
+            this.txt_AES_EncContent.Name = "txt_AES_EncContent";
+            this.txt_AES_EncContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_AES_EncContent.Size = new System.Drawing.Size(834, 104);
+            this.txt_AES_EncContent.TabIndex = 0;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btn_AES_Enc);
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.txt_AES_Conten);
+            this.groupBox5.Location = new System.Drawing.Point(18, 133);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1012, 216);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "AES 加密";
             // 
             // btn_AES_Enc
             // 
@@ -655,130 +776,47 @@
             this.btn_AES_Enc.UseVisualStyleBackColor = true;
             this.btn_AES_Enc.Click += new System.EventHandler(this.btn_AES_Enc_Click);
             // 
-            // txt_AES_EncContent
+            // label1
             // 
-            this.txt_AES_EncContent.Location = new System.Drawing.Point(148, 41);
-            this.txt_AES_EncContent.Multiline = true;
-            this.txt_AES_EncContent.Name = "txt_AES_EncContent";
-            this.txt_AES_EncContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_AES_EncContent.Size = new System.Drawing.Size(834, 104);
-            this.txt_AES_EncContent.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(38, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 18);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "原始文件";
             // 
-            // btn_AES_Dec
+            // txt_AES_Conten
             // 
-            this.btn_AES_Dec.Location = new System.Drawing.Point(436, 164);
-            this.btn_AES_Dec.Name = "btn_AES_Dec";
-            this.btn_AES_Dec.Size = new System.Drawing.Size(145, 37);
-            this.btn_AES_Dec.TabIndex = 2;
-            this.btn_AES_Dec.Text = "進行解密";
-            this.btn_AES_Dec.UseVisualStyleBackColor = true;
-            this.btn_AES_Dec.Click += new System.EventHandler(this.btn_AES_Dec_Click);
+            this.txt_AES_Conten.Location = new System.Drawing.Point(148, 35);
+            this.txt_AES_Conten.Multiline = true;
+            this.txt_AES_Conten.Name = "txt_AES_Conten";
+            this.txt_AES_Conten.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_AES_Conten.Size = new System.Drawing.Size(834, 104);
+            this.txt_AES_Conten.TabIndex = 0;
             // 
-            // txt_AES_DecContent
+            // cb_Key_Base64
             // 
-            this.txt_AES_DecContent.Location = new System.Drawing.Point(148, 218);
-            this.txt_AES_DecContent.Multiline = true;
-            this.txt_AES_DecContent.Name = "txt_AES_DecContent";
-            this.txt_AES_DecContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_AES_DecContent.Size = new System.Drawing.Size(834, 104);
-            this.txt_AES_DecContent.TabIndex = 0;
+            this.cb_Key_Base64.AutoSize = true;
+            this.cb_Key_Base64.Checked = true;
+            this.cb_Key_Base64.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_Key_Base64.Location = new System.Drawing.Point(18, 38);
+            this.cb_Key_Base64.Name = "cb_Key_Base64";
+            this.cb_Key_Base64.Size = new System.Drawing.Size(174, 22);
+            this.cb_Key_Base64.TabIndex = 4;
+            this.cb_Key_Base64.Text = "金鑰為Base64編碼";
+            this.cb_Key_Base64.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // cb_IV_Base64
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 221);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 18);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "還原文件";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(56, 32);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(110, 18);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "金鑰長度(bit)";
-            // 
-            // txt_AES_Key
-            // 
-            this.txt_AES_Key.Location = new System.Drawing.Point(166, 76);
-            this.txt_AES_Key.Name = "txt_AES_Key";
-            this.txt_AES_Key.Size = new System.Drawing.Size(300, 29);
-            this.txt_AES_Key.TabIndex = 2;
-            this.txt_AES_Key.Text = "12345678901234567890123456789012";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(56, 79);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(44, 18);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "金鑰";
-            // 
-            // txt_AES_IV
-            // 
-            this.txt_AES_IV.Location = new System.Drawing.Point(681, 76);
-            this.txt_AES_IV.Name = "txt_AES_IV";
-            this.txt_AES_IV.Size = new System.Drawing.Size(300, 29);
-            this.txt_AES_IV.TabIndex = 2;
-            this.txt_AES_IV.Text = "1234567890zxcvbn";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(565, 79);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(98, 18);
-            this.label18.TabIndex = 1;
-            this.label18.Text = "初始化資料";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(565, 32);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(110, 18);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "區塊長度(bit)";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(166, 29);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(64, 29);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "256";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(681, 29);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(64, 29);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "128";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(236, 32);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(114, 18);
-            this.label20.TabIndex = 1;
-            this.label20.Text = "共32個英數字";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(751, 32);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(114, 18);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "共16個英數字";
+            this.cb_IV_Base64.AutoSize = true;
+            this.cb_IV_Base64.Checked = true;
+            this.cb_IV_Base64.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_IV_Base64.Location = new System.Drawing.Point(18, 85);
+            this.cb_IV_Base64.Name = "cb_IV_Base64";
+            this.cb_IV_Base64.Size = new System.Drawing.Size(156, 22);
+            this.cb_IV_Base64.TabIndex = 4;
+            this.cb_IV_Base64.Text = "IV為Base64編碼";
+            this.cb_IV_Base64.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -811,10 +849,10 @@
             this.groupBox3.PerformLayout();
             this.tab_AES_Tool.ResumeLayout(false);
             this.tab_AES_Tool.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -887,6 +925,9 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button btn_AES_KeyGenerate;
+        private System.Windows.Forms.CheckBox cb_IV_Base64;
+        private System.Windows.Forms.CheckBox cb_Key_Base64;
     }
 }
 

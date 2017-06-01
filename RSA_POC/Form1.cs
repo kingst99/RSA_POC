@@ -181,8 +181,26 @@ namespace RSA_POC
 
             byte[] sourceBytes = Encoding.UTF8.GetBytes(txt_AES_Conten.Text);
             var aes = new RijndaelManaged();
-            aes.Key = Encoding.UTF8.GetBytes(key);
-            aes.IV = Encoding.UTF8.GetBytes(iv);
+
+            if (cb_Key_Base64.Checked)
+            {
+                aes.Key = Convert.FromBase64String(key);
+            }
+            else
+            {
+                aes.Key = Encoding.UTF8.GetBytes(key);
+            }
+
+            if (cb_IV_Base64.Checked)
+            {
+                aes.IV = Convert.FromBase64String(iv);
+            }
+            else
+            {
+                aes.IV = Encoding.UTF8.GetBytes(iv);
+            }
+
+
             aes.Mode = CipherMode.CBC;
             aes.Padding = PaddingMode.PKCS7;
 
@@ -204,8 +222,25 @@ namespace RSA_POC
 
             var encryptBytes = Convert.FromBase64String(txt_AES_EncContent.Text);
             var aes = new RijndaelManaged();
-            aes.Key = Encoding.UTF8.GetBytes(key);
-            aes.IV = Encoding.UTF8.GetBytes(iv);
+
+            if (cb_Key_Base64.Checked)
+            {
+                aes.Key = Convert.FromBase64String(key);
+            }
+            else
+            {
+                aes.Key = Encoding.UTF8.GetBytes(key);
+            }
+
+            if (cb_IV_Base64.Checked)
+            {
+                aes.IV = Convert.FromBase64String(iv);
+            }
+            else
+            {
+                aes.IV = Encoding.UTF8.GetBytes(iv);
+            }
+
             aes.Mode = CipherMode.CBC;
             aes.Padding = PaddingMode.PKCS7;
             ICryptoTransform transform = aes.CreateDecryptor();
@@ -213,5 +248,20 @@ namespace RSA_POC
             txt_AES_DecContent.Text = Encoding.UTF8.GetString(transform.TransformFinalBlock(encryptBytes, 0, encryptBytes.Length));
         }
         #endregion
+
+        private void btn_AES_KeyGenerate_Click(object sender, EventArgs e)
+        {
+            byte[] Key = new byte[32];
+            byte[] IV = new byte[16];
+
+            using (AesCryptoServiceProvider csp = new AesCryptoServiceProvider())
+            {
+                IV = csp.IV;
+                Key = csp.Key;
+
+                txt_AES_IV.Text = Convert.ToBase64String(IV);
+                txt_AES_Key.Text = Convert.ToBase64String(Key);
+            }
+        }
     }
 }
